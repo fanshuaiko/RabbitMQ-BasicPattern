@@ -22,6 +22,7 @@ public class Sender {
 		Channel channel = connection.createChannel();
 		//声明交换机
 		channel.exchangeDeclare(EXCHANGE_NAME, "fanout");//定义一个交换机，类型为“fanout”，即订阅发布模式
+		//订阅发布模式，因为消息是先发送到交换机中的，交换机没有保存功能，如果没有消费者的话消息会丢失
 		channel.basicPublish(EXCHANGE_NAME, "", null, message.getBytes());
 		channel.close();
 		connection.close();
