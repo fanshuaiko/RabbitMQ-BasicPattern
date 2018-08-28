@@ -1,3 +1,3 @@
 # RabbitMQ-demo
 Leaning about RabbitMQ
-http://www.rabbitmq.com/getstarted.html
+RabbitMQ主页：http://www.rabbitmq.com/getstarted.html
