@@ -1,0 +1,5 @@
+#热部署生效
+spring:
+  devtools:
+    restart:
+      enabled: true
