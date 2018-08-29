@@ -24,18 +24,15 @@ public class Reciever2 {
 		channel.queueDeclare(QUEUE, false, false, false, null);
 		//将当前队列绑定到交换机		
 		channel.queueBind(QUEUE, EXCHANGE_NAME, "route2");
-		//告诉服务器，在我们没有确认消息之前不要给我发送新的消息
-		channel.basicQos(1);
 		DefaultConsumer consumer = new DefaultConsumer(channel) {
 			@Override
 			public void handleDelivery(String consumerTag, Envelope envelope, BasicProperties properties, byte[] body)
 					throws IOException {
 				//当接受到消息时调用
 			System.out.println("Rreciever2接受的route消息：" + new String(body));
-			channel.basicAck(envelope.getDeliveryTag(), false);//手动确认消息，第二个参数为false即为确认消息,true为拒绝消息
 			}
 		};
-		//第二个参数是否自动确认消息，此处设为不自动确认
-		channel.basicConsume(QUEUE, false, consumer);
+		//第二个参数是否自动确认消息，此处设为自动确认
+		channel.basicConsume(QUEUE, true, consumer);
 	}
 }
